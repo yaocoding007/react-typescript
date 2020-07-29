@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Bar from './components/bar';
+
+interface IProps {
+  color: string,
+  size?: string
+}
+
+interface IState {
+  count: number
+}
+
+class App extends React.PureComponent<IProps, IState> {
+  public readonly state: Readonly<IState> = {
+    count: 1
+  }
+
+  handleClick = () => {
+    console.log('click me')
+  }
+
+  public render() {
+    return (
+      <div className="app">
+        HELLO TYPESCRIPT
+        <Bar onClick={this.handleClick}>
+          Click me!
+        </Bar>
+      </div>
+    )
+  }
+
+  public componentDidMount() {
+    this.setState({
+      count: 2
+    });
+  }
 }
 
 export default App;
